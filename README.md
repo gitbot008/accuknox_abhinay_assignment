@@ -1,10 +1,13 @@
 Deployed link of assignment on render with debug=True so that it can be tested from django provided forms itself.
 
 Link- https://accuknox-abhinay-assignment.onrender.com
+Note-All functional apis are under the sub-route of "api/" and i have also added the redoc and swagger documentations for clarity.
 
-To test the setup in local env
+
+
+# To test the setup in local env
  - Navigate to the directory with docker-compose file.
- -run <docker compose up --build>  
+ - run <docker compose up --build>  
 
 # API Documentation
 
