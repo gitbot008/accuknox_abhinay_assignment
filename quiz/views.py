@@ -112,7 +112,6 @@ class FriendRequestCreateAPIView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
-        # Customize the success response here
         friend_request_data = response.data
         message = "Friend request sent successfully."
         return Response({"message": message, "friend_request": friend_request_data}, status=response.status_code)
@@ -120,47 +119,47 @@ class FriendRequestCreateAPIView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
     
-class EmailAPIView(APIView):
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-    def get(self, request):
-        emsender = 'Himanshu03213040@gmail.com'
-        empassword = 'vebd xvch pkxo zuxc'
+# class EmailAPIView(APIView):
+#     authentication_classes = [BasicAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     def get(self, request):
+#         emsender = 'Abhinaysingh6324@gmail.com'
+#         empassword = 'vebd xvch pkxo zuxc'
         
         
-        product_id = request.query_params.get('product_id')
-        emreceiver = request.query_params.get('emreceiver')
-        product_name = request.query_params.get('article_title')
-        product_link = request.query_params.get('article_link')
-        subject = f'Rejected Article: {product_name}: Please review again'
-        body = (
-            f"Hi Writer,\n\nPlease review the article with id = {product_id} at the link = {product_link}"
-            f"and submit it for review to the proofreader.\nThanks and Regards\n Admin."
-        )
+#         product_id = request.query_params.get('product_id')
+#         emreceiver = request.query_params.get('emreceiver')
+#         product_name = request.query_params.get('article_title')
+#         product_link = request.query_params.get('article_link')
+#         subject = f'Rejected Article: {product_name}: Please review again'
+#         body = (
+#             f"Hi Writer,\n\nPlease review the article with id = {product_id} at the link = {product_link}"
+#             f"and submit it for review to the proofreader.\nThanks and Regards\n Admin."
+#         )
 
-        em = EmailMessage()
-        em['From'] = emsender
-        em['To'] = emreceiver
-        em['Subject'] = subject
-        em.set_content(body)
-        print("email")
-        context = ssl.create_default_context()
+#         em = EmailMessage()
+#         em['From'] = emsender
+#         em['To'] = emreceiver
+#         em['Subject'] = subject
+#         em.set_content(body)
+#         print("email")
+#         context = ssl.create_default_context()
 
-        try:
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-                smtp.login(emsender, empassword)
-                smtp.sendmail(emsender, emreceiver, em.as_string())
+#         try:
+#             with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+#                 smtp.login(emsender, empassword)
+#                 smtp.sendmail(emsender, emreceiver, em.as_string())
                 
-            # Construct full email format string
-            full_email = {
-                'From': em['From'],
-                'To': em['To'],
-                'Subject': em['Subject'],
-                'Content': em.get_content()
-            }
-            return Response({'message': 'Email sent successfully!', 'email_format': full_email})
-        except Exception as e:
-            return Response({'error': str(e)}, status=500)
+            
+#             full_email = {
+#                 'From': em['From'],
+#                 'To': em['To'],
+#                 'Subject': em['Subject'],
+#                 'Content': em.get_content()
+#             }
+#             return Response({'message': 'Email sent successfully!', 'email_format': full_email})
+#         except Exception as e:
+#             return Response({'error': str(e)}, status=500)
     
 class FriendRequestListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = FriendRequestSerializer
@@ -168,11 +167,11 @@ class FriendRequestListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Set the sender field to the authenticated user
+       
         serializer.save(sender=self.request.user)
 
     def get_queryset(self):
-        # Filter friend requests where the receiver is the logged-in user
+       
         return FriendRequest.objects.filter(sender=self.request.user)
 
 class SentRequestAcceptedListAPIView(generics.ListAPIView):
@@ -181,8 +180,7 @@ class SentRequestAcceptedListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Filter friend requests that have been accepted
-        # and where the logged-in user is the sender or receiver
+        
         user = self.request.user
         return FriendRequest.objects.filter(is_accepted=True).filter(sender=self.request.user)
 
@@ -192,8 +190,7 @@ class SentRequestPendingListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Filter friend requests that have been accepted
-        # and where the logged-in user is the sender or receiver
+        
         user = self.request.user
         return FriendRequest.objects.filter(is_accepted=False).filter(sender=self.request.user)
 
@@ -203,8 +200,7 @@ class RecievedRequestAcceptedListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Filter friend requests that have been accepted
-        # and where the logged-in user is the sender or receiver
+       
         user = self.request.user
         return FriendRequest.objects.filter(is_accepted=True).filter(receiver=self.request.user)
 
@@ -214,8 +210,7 @@ class RecivedRequestPendingListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Filter friend requests that have been accepted
-        # and where the logged-in user is the sender or receiver
+        
         user = self.request.user
         return FriendRequest.objects.filter(is_accepted=False).filter(receiver=self.request.user)
 
@@ -226,25 +221,49 @@ class UserSearchAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         keyword = self.request.query_params.get('keyword', '')
-        if '@' in keyword:  # Check if the keyword is an email
-            return Userkap.objects.filter(email=keyword)
+        if '@' in keyword:  
+            return Userkap.objects.filter(email__icontains=keyword)
         else:
-            # Search by username or email containing the keyword
-            queryset = Userkap.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword))
-
-            # Check if there's only one exact match for username or before '@gmail.com'
-            exact_match = queryset.filter(Q(username=keyword) | Q(email__startswith=keyword))
-            if exact_match.exists():
-                return exact_match
-            else:
-                return queryset
+            return Userkap.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword))
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        if queryset.count() > 1:
-            return Response("Multiple matches found", status=400)
-        elif queryset.count() == 1:
-            serializer = self.get_serializer(queryset.first())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AcceptFriendRequestAPIView(generics.UpdateAPIView):
+    serializer_class = FriendRequestSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        
+        sender_pk = self.kwargs.get('sender_pk')
+        return FriendRequest.objects.filter(receiver=self.request.user, sender_id=sender_pk, is_accepted=False).first()
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance:
+            instance.is_accepted = True
+            instance.save()
+            serializer = self.get_serializer(instance)
             return Response(serializer.data)
         else:
-            return Response("No matches found", status=404)
+            return Response({"message": "No pending friend request found from the specified sender"}, status=status.HTTP_404_NOT_FOUND)
+
+class RejectFriendRequestAPIView(generics.DestroyAPIView):
+    queryset = FriendRequest.objects.all()
+    serializer_class = FriendRequestSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def destroy(self, request, *args, **kwargs):
+        sender_pk = kwargs.get('sender_pk')
+        
+        friend_request = self.get_queryset().filter(sender_id=sender_pk, receiver=request.user).first()
+        
+        if friend_request:
+            friend_request.delete()
+            return Response({"message": "Friend request rejected successfully."}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"error": "Friend request not found."}, status=status.HTTP_404_NOT_FOUND)
