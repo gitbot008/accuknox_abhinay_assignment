@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
 from django.contrib.auth import views as auth_views
 from quiz.middleware import GraphQLRateLimitMiddleware
 from django_ratelimit.decorators import ratelimit
-from .views import EmailAPIView, FriendRequestCreateAPIView,  FriendRequestListCreateAPIView, LoginView, RecievedRequestAcceptedListAPIView, RecivedRequestPendingListAPIView, SentRequestAcceptedListAPIView, SentRequestPendingListAPIView, SignUpView, UserSearchAPIView, UserkapDetailAPIView, UserkapListCreateAPIView
+from .views import  FriendRequestCreateAPIView,  FriendRequestListCreateAPIView, LoginView, RecievedRequestAcceptedListAPIView, RecivedRequestPendingListAPIView, SentRequestAcceptedListAPIView, SentRequestPendingListAPIView, SignUpView, UserSearchAPIView, UserkapDetailAPIView, UserkapListCreateAPIView
 from django.views.decorators.csrf import csrf_exempt
 from .middleware import static_auth_required
 urlpatterns = [
