@@ -26,9 +26,12 @@ urlpatterns = [
     path("jwt/create/", TokenObtainPairView.as_view(), name="jwt_create"),
     path("jwt/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("jwt/verify/", TokenVerifyView.as_view(), name="token_verify"),
-    path('send-email/', EmailAPIView.as_view(), name='send_email'),
+    # path('send-email/', EmailAPIView.as_view(), name='send_email'),
     path('userkap/', UserkapListCreateAPIView.as_view(), name='userkap-list-create'),
     path('userkap/<int:pk>/', UserkapDetailAPIView.as_view(), name='userkap-detail'),
+    path('accept-friend-request/<int:sender_pk>/', AcceptFriendRequestAPIView.as_view(), name='accept-friend-request'),
+    path('reject-friend-request/<int:sender_pk>/', RejectFriendRequestAPIView.as_view(), name='reject-friend-request'),
+
     path('sent-requests/accepted/', SentRequestAcceptedListAPIView.as_view(), name='sent-requests-accepted'),
     path('sent-requests/pending/', SentRequestPendingListAPIView.as_view(), name='sent-requests-pending'),
     path('received-requests/accepted/', RecievedRequestAcceptedListAPIView.as_view(), name='received-requests-accepted'),
