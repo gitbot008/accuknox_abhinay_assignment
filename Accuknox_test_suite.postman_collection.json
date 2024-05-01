@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "df4f241a-1d10-447d-b4b1-5568963c7f8b",
+		"name": "Accuknox_test_suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21658631"
+	},
+	"item": [
+		{
+			"name": "Signup req",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"email\": \"raunak@gmail.com\",\n    \"username\": \"raunak\",\n    \"password\": \"qwertyuiop\",\n    \"first_name\": \"raunak\",\n    \"last_name\": \"chauhan\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:3004/api/signup/",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login req",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"rahul@gmail.com\",\n    \"password\":\"qwertyuiop\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:3004/api/login/",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/search/?keyword=ra",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "ra"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_exact(same url)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/search/?keyword=wishwesh",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "wishwesh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accepted_freind request send by the user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/sent-requests/accepted/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"sent-requests",
+						"accepted",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pending request sent by user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/sent-requests/pending/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"sent-requests",
+						"pending",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recieved request accepted by user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/received-requests/accepted/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"received-requests",
+						"accepted",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recived request by user pending",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/received-requests/pending/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"received-requests",
+						"pending",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
