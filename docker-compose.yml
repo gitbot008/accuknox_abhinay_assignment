@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Path to your Dockerfile
+    volumes:
+      - static_volume:/app/static  # Mount static volume
+    ports:
+      - "8001:8001"  # Expose Django app port
+  
+  
