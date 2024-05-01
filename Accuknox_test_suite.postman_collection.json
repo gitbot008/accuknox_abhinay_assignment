@@ -325,6 +325,164 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "all freind request sent by the loggedin user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/friend-requests-all/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"friend-requests-all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "to list all users present in db",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/userkap/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"userkap",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accepting freind request if pending from a specific user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/accept-friend-request/2/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"accept-friend-request",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rejecting a pending freind request",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "q2@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "qwertyuiop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3004/api/reject-friend-request/2/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"reject-friend-request",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
